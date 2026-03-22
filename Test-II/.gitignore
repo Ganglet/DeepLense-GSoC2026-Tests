@@ -1,0 +1,25 @@
+# Dataset (2.5GB — not tracked)
+lens-finding-test/
+*.npy
+
+# Model weights
+*.pt
+*.pth
+*.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+*.pyc
+__pycache__/
+
+# Environment
+.env
+venv/
+.venv/
+
+# macOS
+.DS_Store
+
+# Outputs
+outputs/
+runs/

@@ -1,0 +1,17 @@
+# Core ML
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Data & Math
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Metrics
+scikit-learn>=1.2.0
+
+# Visualisation
+matplotlib>=3.7.0
+
+# Jupyter
+jupyter
+ipykernel
