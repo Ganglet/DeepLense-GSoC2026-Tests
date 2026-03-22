@@ -52,14 +52,14 @@ Each image is a `.npy` file of shape `(1, 150, 150)`, dtype `float64`, already m
 Pretrained ResNet18 (ImageNet) with the final classification head replaced to output 3 logits.
 
 **Why ResNet18 over ResNet50?**
-With 30k balanced 150×150 grayscale images across 3 classes, ResNet18 (11M parameters) provides ample capacity. ResNet50 (25M parameters) would overfit faster, train ~2× slower, and offer no meaningful gain for this task scale. ResNets are chosen over plain CNNs because their skip connections solve the vanishing gradient problem and enable effective feature reuse in deeper layers.
+With 30k balanced 150×150 grayscale images across 3 classes, ResNet18 (11M parameters) provides ample capacity. ResNet50 (25M parameters) would overfit faster, train ~2× slower, and offer no meaningful gain at this scale.
 
 **Single-channel handling:**
 The images are grayscale (`1` channel), but ResNet18 expects `3`-channel RGB input. Rather than reinitialising the first convolutional layer (losing pretrained weights), the single channel is repeated three times: `(1, 150, 150) → (3, 150, 150)`. This preserves the full ImageNet initialisation — the best possible starting point.
 
 ### Loss Function: CrossEntropyLoss
 
-The dataset is perfectly balanced (10,000 samples per class), so Focal Loss provides no advantage here. Focal Loss is designed to down-weight easy examples via `(1 - p_t)^γ`, which is specifically beneficial when class imbalance causes many easy negatives to dominate the loss — not the case in this dataset.
+Dataset is perfectly balanced (10,000 samples per class) — no need for Focal Loss.
 
 ### Optimiser: AdamW with Differential Learning Rates
 
@@ -68,11 +68,11 @@ The dataset is perfectly balanced (10,000 samples per class), so Focal Loss prov
 | Pretrained backbone | `1e-4` (small — preserve ImageNet features) |
 | New classification head | `1e-3` (larger — learn task quickly) |
 
-**Why AdamW over Adam?** Plain Adam's weight decay is applied through the gradient update and interacts incorrectly with the adaptive learning rate. AdamW decouples weight decay from the gradient step, giving correct L2 regularisation.
+**Why AdamW over Adam?** AdamW decouples weight decay from the gradient step, giving correct L2 regularisation.
 
 ### Scheduler: CosineAnnealingLR
 
-Smoothly decays the learning rate from its initial value to near-zero following a cosine curve over 25 epochs. Avoids the abrupt LR drops of StepLR, which can destabilise fine-tuning.
+Avoids the abrupt LR drops of StepLR, which can destabilise fine-tuning.
 
 ### Data Augmentation
 
@@ -131,7 +131,7 @@ The best checkpoint (AUC = **0.9925**) was saved at epoch 24. The model converge
 
 ### Grad-CAM
 
-Gradient-weighted Class Activation Mapping is used to visualise model attention. For each prediction, gradients of the predicted class score are backpropagated to the last convolutional layer (`layer4[1].conv2`), global-average-pooled into per-channel importance weights, and combined into a spatial heatmap. This confirms the model is attending to the **lensing ring and substructure region** rather than background noise — a critical sanity check for physics-informed ML.
+Hooked into `layer4[1].conv2` to confirm the model attends to the lensing ring and substructure rather than background noise.
 
 ---
 
