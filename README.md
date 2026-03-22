@@ -11,7 +11,7 @@ Gravitational lensing classification tasks submitted for the DeepLense GSoC 2026
 | Test | Task | Model | AUC |
 |---|---|---|---|
 | [Test I](Test-I/README.md) | Multi-class classification (3 lensing substructure types) | ResNet18 + transfer learning | **0.9925** macro |
-| [Test II](Test-II/README.md) | Binary lens finding with extreme class imbalance (1:100) | ResNet18 + Focal Loss + WeightedRandomSampler | **0.9883** test |
+| [Test V](Test-V/README.md) | Binary lens finding with extreme class imbalance (1:100) | ResNet18 + Focal Loss + WeightedRandomSampler | **0.9883** test |
 
 ---
 
@@ -31,7 +31,7 @@ Gravitational lensing classification tasks submitted for the DeepLense GSoC 2026
 
 ---
 
-## Test II — Lens Finding & Data Pipelines
+## Test V — Lens Finding & Data Pipelines
 
 **Task:** Binary classification of strong gravitational lenses vs non-lensed galaxies under severe class imbalance (train 1:17, test 1:100).
 
@@ -43,7 +43,7 @@ Gravitational lensing classification tasks submitted for the DeepLense GSoC 2026
 
 **Results:** Validation AUC **0.9937**, test AUC **0.9883**. Best checkpoint at epoch 22; early stopping at epoch 32.
 
-→ [Full details](Test-II/README.md) · [Notebook](Test-II/solution.ipynb)
+→ [Full details](Test-V/README.md) · [Notebook](Test-V/solution.ipynb)
 
 ---
 
@@ -57,7 +57,7 @@ DeepLense-GSoC2026-Tests/
 │   ├── solution.ipynb
 │   ├── requirements.txt
 │   └── README.md
-├── Test-II/         # Binary lens finding
+├── Test-V/         # Binary lens finding
 │   ├── solution.ipynb
 │   ├── requirements.txt
 │   └── README.md

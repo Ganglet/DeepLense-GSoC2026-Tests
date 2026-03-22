@@ -1,4 +1,4 @@
-# DeepLense — Common Test II: Lens Finding & Data Pipelines
+# DeepLense — Common Test V: Lens Finding & Data Pipelines
 
 **Google Summer of Code 2026 | ML4SCI | DeepLense**
 
@@ -163,7 +163,7 @@ Select the **GSoC DeepLense** kernel and run all cells top to bottom.
 ## Project Structure
 
 ```
-Test-II/
+Test-V/
 ├── lens-finding-test/         # Dataset (not committed)
 │   ├── train_lenses/
 │   ├── train_nonlenses/
