@@ -40,10 +40,8 @@ No cropping — Einstein ring structure spans the full 64×64.
 
 | Split | AUC |
 |-------|-----|
-| Validation (10% of train) | — |
-| Test | — |
-
-*(Filled after training)*
+| Validation (10% of train) | 0.9937 |
+| Test | 0.9883 |
 
 ---
 
